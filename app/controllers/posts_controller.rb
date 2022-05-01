@@ -5,7 +5,13 @@ class PostsController < ApplicationController
   end
 
   def create
-    Post.create(content: params[:content])
+    post = Post.create(content: params[:content],checked: false)
+    render json:{post: post}
+  end
+
+  def destroy
+    post = Post.find(params[:id])
+    post.destroy
   end
 
   def checked
